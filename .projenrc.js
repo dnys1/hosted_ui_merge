@@ -1,12 +1,17 @@
 const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkTypeScriptApp({
-  cdkVersion: '2.1.0',
+  cdkVersion: '2.73.0',
   defaultReleaseBranch: 'main',
   name: 'hosted_ui_merge',
-
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  deps: [
+    "@aws-cdk/aws-cognito-identitypool-alpha",
+    "@aws-sdk/client-cognito-identity-provider",
+  ],
+  devDeps: [
+    "@types/aws-lambda",
+  ],
+  gitignore: [
+    "creds/"
+  ],
 });
 project.synth();
